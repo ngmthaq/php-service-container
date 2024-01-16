@@ -1,7 +1,5 @@
 <?php
 
-use Src\Application;
-
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -26,5 +24,6 @@ require_once(__DIR__ . "../vendor/autoload.php");
 |
 */
 
-$app = new Application();
+$app = require_once(__DIR__ . "../src/bootstrap.php");
+
 $app->run();

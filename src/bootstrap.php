@@ -1,12 +1,13 @@
 <?php
 
-namespace Src;
+use Src\Application;
 
-class Application
-{
-    private array $providers = [];
+/*
+|--------------------------------------------------------------------------
+| Create The Application
+|--------------------------------------------------------------------------
+*/
 
-    public function run()
-    {
-    }
-}
+$app = new Application();
+
+return $app;
