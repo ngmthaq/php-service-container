@@ -1,0 +1,21 @@
+{
+  "name": "thang/php-service-container",
+  "description": "PHP with Service Container",
+  "type": "project",
+  "require": {
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "src/",
+      "Core\\": "core/",
+      "Contracts\\": "contracts/"
+    }
+  },
+  "authors": [
+    {
+      "name": "ngmthaq",
+      "email": "nguyenmanhthang2000.fb@gmail.com"
+    }
+  ]
+}

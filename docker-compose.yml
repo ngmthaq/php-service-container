@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  database:
+    container_name: ${CONTAINER_DB_NAME}
+    build:
+      context: ./docker/database
+      dockerfile: MySQL.Dockerfile
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - storage:/var/lib/mysql/
+    networks:
+      - www
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE_NAME}
+
+  dbms:
+    container_name: ${CONTAINER_DBMS_NAME}
+    build:
+      context: ./docker/database
+      dockerfile: PHPMyAdmin.Dockerfile
+    depends_on:
+      - database
+    restart: always
+    ports:
+      - 3307:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - www
+
+  cache:
+    container_name: ${CONTAINER_CACHE_NAME}
+    build:
+      context: ./docker/database
+      dockerfile: Redis.Dockerfile
+    restart: always
+    volumes:
+      - storage:/data
+    networks:
+      - www
+    ports:
+      - 6379:6379
+    depends_on:
+      - database
+      - dbms
+
+  web:
+    container_name: ${CONTAINER_WEB_NAME}
+    build:
+      context: ./docker/web
+      dockerfile: Web.Dockerfile
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - 80:80
+    networks:
+      - www
+    depends_on:
+      - database
+      - dbms
+      - cache
+
+volumes:
+  storage:
+
+
+networks:
+  www:
