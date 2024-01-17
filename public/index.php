@@ -24,4 +24,6 @@ require_once "../vendor/autoload.php";
 |
 */
 
-require_once "../src/Server.php";
+require_once "./service-container.php";
+
+app()->run();
