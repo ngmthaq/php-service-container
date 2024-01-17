@@ -2,7 +2,9 @@
 
 use App\Bootstrap\Application;
 
-function app()
+$GLOBALS['app'] = new Application();
+
+function app(): Application
 {
-    return new Application();
+    return $GLOBALS['app'];
 }

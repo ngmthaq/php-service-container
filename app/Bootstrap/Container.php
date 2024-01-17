@@ -45,7 +45,7 @@ final class Container
      * @param string $contract
      * @return mixed
      */
-    private function make(string $contract): void
+    private function make(string $contract): mixed
     {
         $item = $this->items[$contract];
         $callback = $item["callback"];
