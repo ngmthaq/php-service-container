@@ -1,8 +1,8 @@
 <?php
 
-namespace Constracts\Providers;
+namespace Contracts\Providers;
 
 interface RouteProviderContract extends ProviderContract
 {
-    
+    public function routes(): array;
 }

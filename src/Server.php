@@ -10,4 +10,4 @@ use Src\Application;
 
 $app = new Application();
 
-return $app;
+$app->run();

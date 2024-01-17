@@ -1,6 +1,6 @@
 <?php
 
-namespace Constracts\Providers;
+namespace Contracts\Providers;
 
 interface ProviderContract
 {

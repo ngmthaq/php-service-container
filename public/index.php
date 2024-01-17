@@ -24,6 +24,4 @@ require_once "../vendor/autoload.php";
 |
 */
 
-$app = require_once "../src/Server.php";
-
-$app->run();
+require_once "../src/Server.php";

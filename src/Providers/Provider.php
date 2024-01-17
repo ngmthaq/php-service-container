@@ -2,7 +2,7 @@
 
 namespace Src\Providers;
 
-use Constracts\Providers\ProviderContract;
+use Contracts\Providers\ProviderContract;
 use Exception;
 
 abstract class Provider implements ProviderContract
