@@ -1,6 +1,7 @@
 <?php
 
 use App\Bootstrap\Application;
+use App\Exceptions\NotFoundException;
 
 $GLOBALS['app'] = new Application();
 
@@ -40,14 +41,39 @@ function array_find(callable $callback, array $array)
 {
     $array_filter = array_filter($array, $callback);
     if (count($array_filter) > 0) return $array_filter[0];
-
     return null;
 }
 
-function json(array $data, int $status = 200)
+function send_json(array $data, int $status = 200)
 {
     ob_clean();
     header('Content-Type: application/json; charset=utf-8');
     http_response_code($status);
     echo json_encode($data);
+    exit();
+}
+
+function send_plain_text(string $data, int $status = 200)
+{
+    ob_clean();
+    header('Content-Type: text/plain; charset=utf-8');
+    http_response_code($status);
+    echo $data;
+    exit();
+}
+
+function send_file(string $file_path)
+{
+    ob_clean();
+    if (!file_exists($file_path)) throw new NotFoundException();
+    http_response_code(200);
+    header('Content-Description: File Transfer');
+    header('Content-Type: ' . mime_content_type($file_path));
+    header('Content-Disposition: attachment; filename="' . basename($file_path) . '"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file_path));
+    readfile($file_path);
+    exit();
 }

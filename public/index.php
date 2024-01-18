@@ -14,6 +14,5 @@ try {
 } catch (\Throwable $th) {
     $message = ["message" => $th->getMessage(), "trace" => $th->getTrace()];
     if ($_ENV["APP_ENVIRONMENT"] === "production") unset($message["trace"]);
-    json($message, $th->getCode());
-    die();
+    send_json($message, $th->getCode());
 }

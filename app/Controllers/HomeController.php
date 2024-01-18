@@ -6,6 +6,6 @@ class HomeController extends Controller implements HomeControllerContract
 {
     public function index()
     {
-        dd($_SERVER);
+        send_json($_SERVER);
     }
 }
