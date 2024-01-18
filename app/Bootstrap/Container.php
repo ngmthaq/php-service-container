@@ -35,7 +35,6 @@ final class Container
         if (empty($this->items[$contract])) throw new \Exception("Cannot found '$contract' in Service Container");
         $item = $this->items[$contract];
         $instance = isset($item["instance"]) ? $item["instance"] : $this->make($contract);
-
         return $instance;
     }
 
@@ -51,7 +50,6 @@ final class Container
         $callback = $item["callback"];
         $instance = $callback();
         $this->items[$contract]["instance"] = $instance;
-
         return $instance;
     }
 }

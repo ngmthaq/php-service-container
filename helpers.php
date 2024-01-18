@@ -43,3 +43,11 @@ function array_find(callable $callback, array $array)
 
     return null;
 }
+
+function json(array $data, int $status = 200)
+{
+    ob_clean();
+    header('Content-Type: application/json; charset=utf-8');
+    http_response_code($status);
+    echo json_encode($data);
+}

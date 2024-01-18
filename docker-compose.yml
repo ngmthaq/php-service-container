@@ -59,7 +59,7 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - 80:80
+      - 9001:80
     networks:
       - www
     depends_on:

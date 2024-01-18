@@ -2,10 +2,12 @@
 
 namespace App\Exceptions;
 
-final class NotFoundException extends \Exception
+use Exception;
+
+final class NotFoundException extends Exception
 {
     public function __construct()
     {
-        parent::__construct("Not Found Exception", 404);
+        parent::__construct("Not Found", 404);
     }
 }

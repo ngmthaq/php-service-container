@@ -22,9 +22,4 @@ class AppServiceProvider extends ServiceProvider implements AppServiceProviderCo
         $this->startSession();
         $this->loadEnv();
     }
-
-    public function register(): void
-    {
-        //
-    }
 }

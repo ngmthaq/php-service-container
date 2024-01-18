@@ -36,7 +36,7 @@ final class Application
     public function run(): void
     {
         foreach ($this->providers as $provider) {
-            $provider_instance = new $provider();
+            new $provider();
         }
     }
 }
