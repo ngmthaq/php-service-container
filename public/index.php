@@ -1,5 +1,16 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\RouteServiceProvider;
+
+/*
+|--------------------------------------------------------------------------
+| Register constants
+|--------------------------------------------------------------------------
+*/
+
+define("__ROOT__", realpath("../"));
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -24,6 +35,10 @@ require_once "../vendor/autoload.php";
 |
 */
 
-require_once "./service-container.php";
+require_once "./helpers.php";
+
+app()->registerProvider(AppServiceProvider::class);
+
+app()->registerProvider(RouteServiceProvider::class);
 
 app()->run();

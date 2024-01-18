@@ -6,10 +6,21 @@ use Dotenv\Dotenv;
 
 class AppServiceProvider extends ServiceProvider implements AppServiceProviderContract
 {
-    public function boostrap(): void
+    public function startSession(): void
     {
         session_start();
-        Dotenv::createImmutable("../../");
+    }
+
+    public function loadEnv(): void
+    {
+        $dotenv = Dotenv::createImmutable(__ROOT__);
+        $dotenv->safeLoad();
+    }
+
+    public function boostrap(): void
+    {
+        $this->startSession();
+        $this->loadEnv();
     }
 
     public function register(): void
