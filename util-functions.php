@@ -62,6 +62,15 @@ function send_plain_text(string $data, int $status = 200)
     exit();
 }
 
+function send_html(string $data, int $status = 200)
+{
+    ob_clean();
+    header('Content-Type: text/html; charset=utf-8');
+    http_response_code($status);
+    echo $data;
+    exit();
+}
+
 function send_file(string $file_path)
 {
     ob_clean();
