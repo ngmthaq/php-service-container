@@ -10,8 +10,8 @@
       "App\\": "app/"
     },
     "files": [
-      "./helpers.php",
-      "./ioc.php"
+      "./util-functions.php",
+      "./service-container.php"
     ]
   },
   "authors": [
