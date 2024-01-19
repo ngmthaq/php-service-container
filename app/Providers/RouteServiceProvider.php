@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use App\Exceptions\NotFoundException;
+use App\Helpers\Request;
 
-class RouteServiceProvider extends ServiceProvider implements RouteServiceProviderContract
+class RouteServiceProvider extends ServiceProvider
 {
     public function boostrap(): void
     {
@@ -22,24 +23,46 @@ class RouteServiceProvider extends ServiceProvider implements RouteServiceProvid
         if (gettype($contract) === "object") {
             $contract();
         } else {
+            $request = new Request();
             $action = $route["action"];
             $controller = app()->container->resolve($contract);
-            $controller->$action();
+            $controller->$action($request);
         }
     }
 
+    /**
+     * Register get request
+     * 
+     * @param string $path
+     * @param callable | string $controller
+     * @param string $action
+     * @return array
+     */
     public function get(string $path, callable | string $contract, string $action = ''): array
     {
         $method = "GET";
         return compact("method", "path", "contract", "action");
     }
 
+    /**
+     * Register post request
+     * 
+     * @param string $path
+     * @param callable | string $controller
+     * @param string $action
+     * @return array
+     */
     public function post(string $path, callable | string $contract, string $action = ''): array
     {
         $method = "POST";
         return compact("method", "path", "contract", "action");
     }
 
+    /**
+     * Register routes of the application
+     * 
+     * @return array
+     */
     public function routes(): array
     {
         return [];

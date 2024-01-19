@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
-class HomeController extends Controller implements HomeControllerContract
+use App\Helpers\Request;
+
+class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         send_json($_SERVER);
     }

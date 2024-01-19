@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Controllers\HomeControllerContract;
+use App\Controllers\HomeController;
 
-class RouterServiceProvider extends RouteServiceProvider implements RouterServiceProviderContract
+class RouterServiceProvider extends RouteServiceProvider
 {
     public function routes(): array
     {
         return [
-            $this->get("/", HomeControllerContract::class, "index"),
+            $this->get("/", HomeController::class, "index"),
         ];
     }
 }
