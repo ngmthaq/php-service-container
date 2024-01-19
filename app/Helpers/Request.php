@@ -7,16 +7,12 @@ class Request
     public array $queries;
     public array $params;
     public array $files;
-    public array $cookies;
-    public array $sessions;
 
     public function __construct()
     {
         $this->queries = $this->prepare($_GET);
         $this->params = $this->prepare($_POST);
         $this->files = $_FILES;
-        $this->cookies = $_COOKIE;
-        $this->sessions = $_SESSION;
     }
 
     /**

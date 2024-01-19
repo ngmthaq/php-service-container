@@ -11,3 +11,4 @@ final class NotFoundException extends Exception
         parent::__construct("Not Found", 404);
     }
 }
+

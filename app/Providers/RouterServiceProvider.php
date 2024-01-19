@@ -9,7 +9,7 @@ class RouterServiceProvider extends RouteServiceProvider
     public function routes(): array
     {
         return [
-            $this->get("/", HomeController::class, "index"),
+            $this->get("/", HomeController::class, "index", ["throttle"]),
         ];
     }
 }

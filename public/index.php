@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\ForbiddenException;
 use App\Providers\AppServiceProvider;
 use App\Providers\RouterServiceProvider;
 
@@ -12,7 +13,8 @@ try {
     app()->registerProvider(RouterServiceProvider::class);
     app()->run();
 } catch (\Throwable $th) {
-    $message = ["message" => $th->getMessage(), "trace" => $th->getTrace()];
+    $message = ["message" => $th->getMessage(),  "details" => "", "trace" => $th->getTrace()];
+    if ($th instanceof ForbiddenException) $message["details"] = $th->reason;
     if ($_ENV["APP_ENVIRONMENT"] === "production") unset($message["trace"]);
     send_json($message, $th->getCode());
 }
